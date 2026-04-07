@@ -2,107 +2,63 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Pregnancy Clinical Timeline</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="page">
+<header class="site-header">
+  <div class="header-inner">
+    <h1>Pregnancy Clinical Timeline</h1>
+    <p class="site-sub">A complete obstetric map &middot; Weeks 1&ndash;42 &middot; Labs &middot; Imaging &middot; TORCH &middot; Fetal Development &middot; Treatments &middot; Postpartum</p>
+    <div class="legend-row" id="legend-row"></div>
+  </div>
+  <div class="header-ref">
+    <div class="ref-title">Quick Ref</div>
+    <div class="qref"><span>FHR normal</span><b>110&ndash;160 bpm</b></div>
+    <div class="qref"><span>Hgb (preg)</span><b>10&ndash;12 g/dL</b></div>
+    <div class="qref"><span>Cr (preg)</span><b>&lt;0.8 mg/dL</b></div>
+    <div class="qref"><span>&beta;-hCG peak</span><b>wks 8&ndash;10</b></div>
+    <div class="qref"><span>AFI normal</span><b>5&ndash;24 cm</b></div>
+    <div class="qref"><span>Viability</span><b>22&ndash;24 wks</b></div>
+    <div class="qref"><span>MCA-PSV cut</span><b>&gt;1.5 MoM</b></div>
+    <div class="qref"><span>Full term</span><b>39&ndash;40 wks</b></div>
+    <div class="qref"><span>Fundal Ht</span><b>GA &plusmn; 2 cm</b></div>
+  </div>
+</header>
 
-  <!-- LEFT RAIL: week ruler + era labels -->
-
-  <aside class="rail-left" id="rail-left">
-    <div class="rail-header">
-      <div class="rail-logo">Ob<br/>Timeline</div>
-    </div>
-    <div class="week-ruler" id="week-ruler"><!-- JS --></div>
-  </aside>
-
-  <!-- CENTER: spine + cards -->
-
-  <main class="center" id="center">
-    <header class="site-header">
-      <h1>Pregnancy Clinical Timeline</h1>
-      <p class="site-sub">A complete obstetric map · Weeks 1–42 · Labs · Imaging · TORCH · Fetal Development · Treatments · Postpartum</p>
-      <div class="legend-row">
-        <div class="leg-item" data-type="labs"><span class="leg-dot"></span>Labs</div>
-        <div class="leg-item" data-type="appt"><span class="leg-dot"></span>Appointments</div>
-        <div class="leg-item" data-type="infect"><span class="leg-dot"></span>Infections / TORCH</div>
-        <div class="leg-item" data-type="fetal"><span class="leg-dot"></span>Fetal Dev.</div>
-        <div class="leg-item" data-type="tx"><span class="leg-dot"></span>Treatments / Vaccines</div>
-        <div class="leg-item" data-type="screen"><span class="leg-dot"></span>Screening / Imaging</div>
-      </div>
-    </header>
-
-<!-- Era band labels sit behind -->
-<div class="era-overlay" id="era-overlay"><!-- JS --></div>
-
-<!-- The timeline spine + events -->
-<div class="spine-wrap" id="spine-wrap">
-  <div class="spine" id="spine"><!-- JS --></div>
+<div class="chart-wrap">
+  <!-- Week axis (left) -->
+  <div class="week-axis" id="week-axis"></div>
+  <!-- Era bands behind lanes -->
+  <div class="era-bands" id="era-bands"></div>
+  <!-- Lane headers (sticky) -->
+  <div class="lane-headers" id="lane-headers"></div>
+  <!-- The lanes container -->
+  <div class="lanes" id="lanes"></div>
 </div>
 
 <!-- Postpartum -->
+
 <section class="pp-section" id="pp-section">
-  <div class="pp-header">Postpartum — 0 to 12 Weeks</div>
-  <div class="pp-grid" id="pp-grid"><!-- JS --></div>
+  <h2 class="pp-title">Postpartum &mdash; 0 to 12 Weeks</h2>
+  <div class="pp-grid" id="pp-grid"></div>
 </section>
 
 <footer class="site-footer">
-  <p>Pregnancy Clinical Timeline · Educational reference · Sources: ACOG Practice Bulletins, AAP Red Book, UpToDate · Not a substitute for clinical judgment · Verify all dosing independently</p>
+  <p>Pregnancy Clinical Timeline &middot; Educational reference &middot; Sources: ACOG Practice Bulletins, AAP Red Book, UpToDate &middot; Not a substitute for clinical judgment &middot; Verify all dosing independently</p>
 </footer>
-
-  </main>
-
-  <!-- RIGHT RAIL: filter + jump + ref vals -->
-
-  <aside class="rail-right">
-    <div class="rr-section">
-      <div class="rr-title">Filter</div>
-      <div id="filter-btns">
-        <button class="fbtn on" data-type="all">All</button>
-        <button class="fbtn" data-type="labs">Labs</button>
-        <button class="fbtn" data-type="appt">Appt</button>
-        <button class="fbtn" data-type="infect">Infect.</button>
-        <button class="fbtn" data-type="fetal">Fetal</button>
-        <button class="fbtn" data-type="tx">Tx / Vax</button>
-        <button class="fbtn" data-type="screen">Imaging</button>
-      </div>
-    </div>
-    <div class="rr-section">
-      <div class="rr-title">Jump to</div>
-      <a class="jlink" href="#era-t1">T1 · Wks 1–13</a>
-      <a class="jlink" href="#era-t2">T2 · Wks 14–27</a>
-      <a class="jlink" href="#era-t3">T3 · Wks 28–36</a>
-      <a class="jlink" href="#era-term">Term · 37–42</a>
-      <a class="jlink" href="#pp-section">Postpartum</a>
-    </div>
-    <div class="rr-section">
-      <div class="rr-title">Quick Ref</div>
-      <div class="qref"><span>FHR normal</span><b>110–160 bpm</b></div>
-      <div class="qref"><span>Hgb (preg)</span><b>10–12 g/dL</b></div>
-      <div class="qref"><span>Cr (preg)</span><b>&lt;0.8 mg/dL</b></div>
-      <div class="qref"><span>β-hCG peak</span><b>wks 8–10</b></div>
-      <div class="qref"><span>AFI normal</span><b>5–24 cm</b></div>
-      <div class="qref"><span>Viability</span><b>22–24 wks</b></div>
-      <div class="qref"><span>MCA-PSV cut</span><b>&gt;1.5 MoM</b></div>
-      <div class="qref"><span>Full term</span><b>39–40 wks</b></div>
-      <div class="qref"><span>Fundal Ht</span><b>GA ± 2 cm</b></div>
-    </div>
-  </aside>
-
-</div>
 
 <!-- MODAL -->
 
 <div class="overlay" id="overlay">
   <div class="modal" id="modal">
-    <button class="modal-x" id="modal-x">✕</button>
+    <button class="modal-x" id="modal-x">&times;</button>
     <div class="modal-tag" id="modal-tag"></div>
     <div class="modal-wk" id="modal-wk"></div>
     <h2 class="modal-title" id="modal-title"></h2>
