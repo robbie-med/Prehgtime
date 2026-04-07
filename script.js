@@ -361,7 +361,6 @@ const side = ev.side || ‘right’;
 let top = wY(ev.week - W0);
 const occ = occupied[side];
 
-```
 let tries = 0;
 while (tries < 80) {
   const bottom = top + CARD_H;
@@ -388,7 +387,6 @@ eventEl.innerHTML = `<div class="event-card">
 </div>`;
 eventEl.addEventListener('click', () => openModal(ev));
 spine.appendChild(eventEl);
-```
 
 });
 }
