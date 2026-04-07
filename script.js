@@ -356,7 +356,7 @@ const occupied = { left: [], right: [] };
 const CARD_H = 125;
 const GAP = 6;
 
-[…EVENTS].sort((a, b) => a.week - b.week).forEach(ev => {
+[...EVENTS].sort((a, b) => a.week - b.week).forEach(ev => {
 const side = ev.side || ‘right’;
 let top = wY(ev.week - W0);
 const occ = occupied[side];
