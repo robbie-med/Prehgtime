@@ -2,845 +2,115 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pregnancy Clinical Timeline</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Pregnancy Clinical Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-<div class="bg-grain"></div>
+<div class="page">
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="header-title">
-      <span class="header-badge">Clinical Reference</span>
-      <h1>Pregnancy Timeline</h1>
-      <p class="header-sub">A comprehensive obstetric map — labs, infections, appointments, fetal development & treatments</p>
+  <!-- LEFT RAIL: week ruler + era labels -->
+
+  <aside class="rail-left" id="rail-left">
+    <div class="rail-header">
+      <div class="rail-logo">Ob<br/>Timeline</div>
     </div>
-    <div class="header-legend">
-      <div class="legend-item"><span class="dot dot-labs"></span>Labs</div>
-      <div class="legend-item"><span class="dot dot-appt"></span>Appointments</div>
-      <div class="legend-item"><span class="dot dot-infect"></span>Infections / TORCH</div>
-      <div class="legend-item"><span class="dot dot-fetal"></span>Fetal Development</div>
-      <div class="legend-item"><span class="dot dot-tx"></span>Treatments / Vaccinations</div>
-      <div class="legend-item"><span class="dot dot-screen"></span>Screening / Imaging</div>
-    </div>
-  </div>
-</header>
+    <div class="week-ruler" id="week-ruler"><!-- JS --></div>
+  </aside>
 
-<nav class="trimester-nav">
-  <button class="tnav-btn active" data-target="t1">T1 · Wks 1–13</button>
-  <button class="tnav-btn" data-target="t2">T2 · Wks 14–27</button>
-  <button class="tnav-btn" data-target="t3">T3 · Wks 28–40</button>
-  <button class="tnav-btn" data-target="labor">Labor &amp; Delivery</button>
-  <button class="tnav-btn" data-target="postpartum">Postpartum</button>
-</nav>
+  <!-- CENTER: spine + cards -->
 
-<main class="timeline-main">
-
-  <!-- TRIMESTER 1 -->
-
-  <section class="trimester-section" id="t1">
-    <div class="trimester-header t1-header">
-      <div class="trimester-label">First Trimester</div>
-      <div class="trimester-weeks">Weeks 1 – 13</div>
-      <div class="trimester-caption">Organogenesis · Highest teratogen risk · hCG peaks · Implantation &amp; placentation</div>
-    </div>
+  <main class="center" id="center">
+    <header class="site-header">
+      <h1>Pregnancy Clinical Timeline</h1>
+      <p class="site-sub">A complete obstetric map · Weeks 1–42 · Labs · Imaging · TORCH · Fetal Development · Treatments · Postpartum</p>
+      <div class="legend-row">
+        <div class="leg-item" data-type="labs"><span class="leg-dot"></span>Labs</div>
+        <div class="leg-item" data-type="appt"><span class="leg-dot"></span>Appointments</div>
+        <div class="leg-item" data-type="infect"><span class="leg-dot"></span>Infections / TORCH</div>
+        <div class="leg-item" data-type="fetal"><span class="leg-dot"></span>Fetal Dev.</div>
+        <div class="leg-item" data-type="tx"><span class="leg-dot"></span>Treatments / Vaccines</div>
+        <div class="leg-item" data-type="screen"><span class="leg-dot"></span>Screening / Imaging</div>
+      </div>
+    </header>
 
 ```
-<div class="week-track">
+<!-- Era band labels sit behind -->
+<div class="era-overlay" id="era-overlay"><!-- JS --></div>
 
-  <div class="week-marker" style="--col:1">
-    <div class="wk-label">Wk 4–6</div>
-    <div class="cards-col">
-      <div class="card card-appt">
-        <div class="card-tag">Appointment</div>
-        <div class="card-title">Pregnancy Confirmation</div>
-        <div class="card-body">First prenatal visit if not already seen. Confirm intrauterine pregnancy (IUP). Obtain LMP, EDD, obstetric history.</div>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Initial Prenatal Panel</div>
-        <ul class="card-list">
-          <li>Type &amp; Screen (ABO/Rh)</li>
-          <li>CBC (Hgb, Hct, platelets)</li>
-          <li>Rubella IgG titer</li>
-          <li>Varicella IgG titer</li>
-          <li>Hepatitis B sAg</li>
-          <li>HIV 1/2 Ag/Ab (4th gen)</li>
-          <li>RPR / VDRL (syphilis)</li>
-          <li>Gonorrhea &amp; Chlamydia NAAT</li>
-          <li>Urine culture</li>
-          <li>Pap smear (if due)</li>
-          <li>TSH</li>
-          <li>Hgb A1c (if high risk)</li>
-          <li>Urine hCG (confirm)</li>
-        </ul>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Implantation &amp; Cardiac Poles</div>
-        <div class="card-body">Blastocyst implants ~day 6–10. Cardiac tube forms; heart begins beating ~wk 5–6. Embryo ~4 mm CRL at wk 6.</div>
-      </div>
-      <div class="card card-infect">
-        <div class="card-tag">Infections / TORCH</div>
-        <div class="card-title">Critical Exposure Window</div>
-        <div class="card-body"><strong>Rubella:</strong> T1 infection → congenital rubella syndrome (cataracts, cochlear defects, heart defects). <strong>CMV:</strong> Periventricular calcifications, hearing loss, chorioretinitis. <strong>Toxoplasma:</strong> Chorioretinitis, intracranial calcifications, hydrocephalus (if T1). <strong>Parvovirus B19:</strong> Hydrops fetalis via aplastic crisis of fetal RBCs. All TORCH risks highest in first trimester.</div>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Treatments / Supplements</div>
-        <div class="card-title">Early Supplementation</div>
-        <ul class="card-list">
-          <li><strong>Folic acid:</strong> 0.4–0.8 mg/day (4 mg if prior NTD) — NTD prevention</li>
-          <li>Prenatal vitamin (iron, iodine, DHA)</li>
-          <li>Avoid teratogens: isotretinoin, valproate, warfarin, methotrexate, ACEi/ARBs</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:2">
-    <div class="wk-label">Wk 7–10</div>
-    <div class="cards-col">
-      <div class="card card-screen">
-        <div class="card-tag">Screening / Imaging</div>
-        <div class="card-title">Dating Ultrasound</div>
-        <div class="card-body">Transvaginal U/S. Confirm IUP, viability, CRL for EDD confirmation. Assess for ectopic, molar, or multiple gestation. FHR documented (normal 110–160 bpm).</div>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Quantitative β-hCG</div>
-        <div class="card-body">Peaks at 8–10 weeks (~100,000 mIU/mL), then declines. Doubles every 48h in viable early pregnancy. Low/plateauing hCG → ectopic or failing IUP. Hyperemesis gravidarum correlated with high hCG.</div>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Organogenesis</div>
-        <div class="card-body">All major organ systems forming. CNS: neural tube closes by day 28. Limbs, heart chambers, GI tract forming. Embryo becomes fetus at wk 10. CRL ~30 mm at wk 10.</div>
-      </div>
-      <div class="card card-infect">
-        <div class="card-tag">Infections</div>
-        <div class="card-title">HSV / Listeria</div>
-        <div class="card-body"><strong>HSV:</strong> Intrauterine infection → microcephaly, hydrocephalus, vesicular lesions, very low birth weight (does NOT cause hydrops). <strong>Listeria:</strong> Asymptomatic mother; congenital listeriosis manifests at birth; maternal fever/GI symptoms may occur. Avoid unpasteurized dairy/deli meat.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:3">
-    <div class="wk-label">Wk 10–13</div>
-    <div class="cards-col">
-      <div class="card card-screen">
-        <div class="card-tag">Screening / Imaging</div>
-        <div class="card-title">First Trimester Aneuploidy Screen</div>
-        <ul class="card-list">
-          <li><strong>Nuchal translucency (NT) U/S:</strong> wk 11–13⁶⁄₇ — NT ≥3 mm → ↑ risk T21/T18/T13, cardiac defects</li>
-          <li><strong>Cell-free fetal DNA (cfDNA/NIPT):</strong> ≥10 wks — T21, T18, T13, sex chromosome aneuploidies, optional microdeletions</li>
-          <li><strong>Combined first trimester screen:</strong> NT + free β-hCG + PAPP-A</li>
-          <li>Low PAPP-A → FGR, preeclampsia risk</li>
-        </ul>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">First Trimester Analytes</div>
-        <ul class="card-list">
-          <li><strong>PAPP-A:</strong> Low → aneuploidy, FGR</li>
-          <li><strong>Free β-hCG:</strong> High → T21; Low → T18/T13</li>
-          <li>Progesterone (if threatened AB)</li>
-        </ul>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Procedures</div>
-        <div class="card-title">Diagnostic Options (if indicated)</div>
-        <ul class="card-list">
-          <li><strong>CVS (Chorionic Villus Sampling):</strong> 10–13 wks — karyotype, microarray</li>
-          <li>Amniocentesis: deferred to T2 (15–20 wks)</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Treatments</div>
-        <div class="card-title">Preeclampsia Prophylaxis Risk Assessment</div>
-        <div class="card-body">If high risk (prior preeclampsia, multifetal gestation, CKD, HTN, DM, autoimmune): initiate <strong>low-dose aspirin 81 mg/day</strong> starting 12–28 wks (ideally before 16 wks). Continue until 36–37 wks.</div>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">End of Embryonic Period</div>
-        <div class="card-body">Fetal period begins. External genitalia differentiate (may be visible on U/S 12–14 wks). Intestines return from umbilical stalk. CRL ~6 cm at 13 wks. Placenta functional.</div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /week-track -->
-```
-
-  </section>
-
-  <!-- TRIMESTER 2 -->
-
-  <section class="trimester-section hidden" id="t2">
-    <div class="trimester-header t2-header">
-      <div class="trimester-label">Second Trimester</div>
-      <div class="trimester-weeks">Weeks 14 – 27</div>
-      <div class="trimester-caption">Anatomic survey · Maternal serum screening · Fetal viability threshold · Gestational diabetes screen</div>
-    </div>
-
-```
-<div class="week-track">
-
-  <div class="week-marker" style="--col:1">
-    <div class="wk-label">Wk 14–16</div>
-    <div class="cards-col">
-      <div class="card card-appt">
-        <div class="card-tag">Appointment</div>
-        <div class="card-title">Routine Prenatal Visit</div>
-        <div class="card-body">BP, weight, fundal height (FH = wks ± 2 cm), FHR doppler (120–160 bpm). Reassess symptoms: round ligament pain, leukorrhea, heartburn, constipation.</div>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Quad Screen (MSAFP Panel)</div>
-        <ul class="card-list">
-          <li><strong>AFP:</strong> ↑ → NTD, abdominal wall defects; ↓ → T21</li>
-          <li><strong>hCG:</strong> ↑ → T21</li>
-          <li><strong>Estriol (uE3):</strong> ↓ → T18, T21</li>
-          <li><strong>Inhibin A:</strong> ↑ → T21</li>
-          <li>Performed 15–20 wks</li>
-        </ul>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Procedures</div>
-        <div class="card-title">Amniocentesis (if indicated)</div>
-        <div class="card-body">15–20 wks. Karyotype, FISH, microarray. Abnormal NIPT, advanced maternal age (≥35), or abnormal anatomy on U/S. Risk of pregnancy loss ~0.1–0.3%.</div>
-      </div>
-      <div class="card card-infect">
-        <div class="card-tag">Infections</div>
-        <div class="card-title">Parvovirus B19 Window</div>
-        <div class="card-body"><strong>Parvovirus B19</strong> (Fifth disease): Slapped-cheek rash, mild flu-like illness, polyarticular arthritis in adults. Fetal infection → aplastic crisis → severe anemia → <strong>nonimmune hydrops fetalis</strong>. Risk higher in T1–T2. No treatment; monitor with MCA Doppler (MCA-PSV &gt;1.5 MoM → fetal anemia). Intrauterine transfusion if severe.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:2">
-    <div class="wk-label">Wk 18–22</div>
-    <div class="cards-col">
-      <div class="card card-screen">
-        <div class="card-tag">Imaging</div>
-        <div class="card-title">Anatomy Survey Ultrasound</div>
-        <ul class="card-list">
-          <li>Fetal biometry: BPD, HC, AC, FL → EFW</li>
-          <li>Brain: lateral ventricles, cavum septum pellucidum, cerebellum, posterior fossa</li>
-          <li>Face: lip/palate, orbits, nasal bone</li>
-          <li>Heart: 4-chamber, LVOT, RVOT, 3-vessel view</li>
-          <li>Spine: neural tube integrity</li>
-          <li>Abdomen: stomach, kidneys, bladder, cord insertion</li>
-          <li>Placenta: location, umbilical cord (3 vessels)</li>
-          <li>Cervical length (if indicated: high risk for PTL)</li>
-          <li>Amniotic fluid index (AFI) or DVP</li>
-        </ul>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Quickening &amp; Organ Maturation</div>
-        <div class="card-body">Mother feels fetal movement (quickening) 18–22 wks (earlier in multips). Fetal kidneys produce urine → amniotic fluid. Lungs begin surfactant production (type II pneumocytes). Lanugo present. Swallowing begins.</div>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Fetal Anatomy Labs (Selected)</div>
-        <ul class="card-list">
-          <li>MCA-PSV Doppler if parvovirus exposure or alloimmunization</li>
-          <li>Maternal Hgb (anemia screen)</li>
-        </ul>
-      </div>
-      <div class="card card-infect">
-        <div class="card-tag">Infections</div>
-        <div class="card-title">Rubella / VZV Late T2</div>
-        <div class="card-body"><strong>Rubella</strong> &gt;20 wks: hydrops fetalis rare. <strong>VZV (varicella):</strong> Congenital varicella syndrome — scar-like skin lesions, chorioretinitis, limb hypoplasia, cortical atrophy (detectable on antenatal U/S). VZV IgG negative mother → VZIG within 96h of exposure; acyclovir if active disease.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:3">
-    <div class="wk-label">Wk 24–28</div>
-    <div class="cards-col">
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Gestational Diabetes Screening</div>
-        <ul class="card-list">
-          <li><strong>1-hr GCT (Glucose Challenge Test):</strong> 50g glucose load; threshold ≥130 or ≥140 mg/dL</li>
-          <li>If abnormal → <strong>3-hr GTT (OGTT):</strong> 100g; Carpenter-Coustan criteria (fasting ≥95, 1h ≥180, 2h ≥155, 3h ≥140; 2+ values elevated = GDM)</li>
-          <li>Alternative: 2-hr 75g OGTT (IADPSG/WHO)</li>
-          <li>Repeat CBC (anemia)</li>
-          <li>Urine culture (asymptomatic bacteriuria)</li>
-          <li>Rh(D) antibody screen (28 wks)</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Vaccinations</div>
-        <div class="card-title">Tdap &amp; Rh Immunoglobulin</div>
-        <ul class="card-list">
-          <li><strong>Tdap vaccine:</strong> 27–36 wks (ideally 27–32) — protects newborn from pertussis via passive Ab transfer</li>
-          <li><strong>Influenza:</strong> Any trimester (inactivated vaccine) during flu season</li>
-          <li><strong>COVID-19:</strong> Any trimester (mRNA preferred)</li>
-          <li><strong>RhoGAM (Rh immunoglobulin 300 μg IM):</strong> 28 wks if Rh(D)–; also after any bleeding episode, amniocentesis, trauma</li>
-        </ul>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Viability Threshold</div>
-        <div class="card-body">Fetal viability conventionally at <strong>22–24 weeks</strong>. At 24 wks: ~50% survival with intensive NICU care. Surfactant production increases. Eyes open. Hearing present. Fetal weight ~600 g at 24 wks → ~1000 g at 28 wks.</div>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Screening</div>
-        <div class="card-title">Cervical Length &amp; PTL Risk</div>
-        <div class="card-body">Transvaginal cervical length: &lt;25 mm at 24 wks → high risk preterm labor. <strong>17-OHPC (17α-hydroxyprogesterone caproate):</strong> If prior spontaneous preterm birth &lt;37 wks — weekly IM injections 16–36 wks. Vaginal progesterone 200 mg if short cervix.</div>
-      </div>
-    </div>
-  </div>
-
+<!-- The timeline spine + events -->
+<div class="spine-wrap" id="spine-wrap">
+  <div class="spine" id="spine"><!-- JS --></div>
 </div>
-```
 
-  </section>
-
-  <!-- TRIMESTER 3 -->
-
-  <section class="trimester-section hidden" id="t3">
-    <div class="trimester-header t3-header">
-      <div class="trimester-label">Third Trimester</div>
-      <div class="trimester-weeks">Weeks 28 – 40</div>
-      <div class="trimester-caption">Fetal growth · GBS screening · Antepartum surveillance · Delivery planning</div>
-    </div>
-
-```
-<div class="week-track">
-
-  <div class="week-marker" style="--col:1">
-    <div class="wk-label">Wk 28–32</div>
-    <div class="cards-col">
-      <div class="card card-appt">
-        <div class="card-tag">Appointment</div>
-        <div class="card-title">Every 2-Week Visits</div>
-        <div class="card-body">BP, weight, FH (fundal height ≈ GA ± 2 cm), FHR auscultation. Assess for preeclampsia signs: headache, RUQ pain, visual changes, edema. Leopold maneuvers for lie/presentation.</div>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Third Trimester Labs</div>
-        <ul class="card-list">
-          <li>CBC (repeat — anemia, thrombocytopenia)</li>
-          <li>Repeat HIV screen (high-risk or unknown status)</li>
-          <li>Repeat syphilis RPR (high-risk)</li>
-          <li>Repeat GC/Chlamydia (high-risk)</li>
-          <li>Hep B (if not done/negative prior)</li>
-          <li>Urine protein/creatinine ratio if pre-eclampsia concern</li>
-        </ul>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Imaging</div>
-        <div class="card-title">Growth Ultrasound</div>
-        <div class="card-body">Estimated fetal weight (EFW), BPP (biophysical profile), amniotic fluid. Umbilical artery Dopplers if FGR suspected. Placenta previa follow-up if low-lying at anatomy scan.</div>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Rapid Fetal Weight Gain</div>
-        <div class="card-body">~200–250 g/week weight gain. Lung maturity increases. Vernix caseosa forms. Fetal position often vertex by 32 wks. Brain gyrification begins in earnest. 28 wks: ~1100 g; 32 wks: ~1800 g.</div>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Treatments</div>
-        <div class="card-title">Antenatal Corticosteroids</div>
-        <div class="card-body">If preterm delivery anticipated &lt;34 wks: <strong>Betamethasone 12 mg IM × 2 doses, 24h apart</strong> → promotes fetal lung maturity (surfactant), reduces RDS, IVH, NEC. Rescue course if &gt;14 days since initial course and still &lt;34 wks.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:2">
-    <div class="wk-label">Wk 32–36</div>
-    <div class="cards-col">
-      <div class="card card-screen">
-        <div class="card-tag">Surveillance</div>
-        <div class="card-title">Antepartum Fetal Surveillance</div>
-        <ul class="card-list">
-          <li><strong>Non-Stress Test (NST):</strong> 2 accelerations ≥15 bpm × 15 sec in 20 min → reactive. Done weekly or twice-weekly for high-risk (DM, HTN, FGR, post-dates)</li>
-          <li><strong>BPP (Biophysical Profile):</strong> NST + U/S (breathing, movement, tone, AFI); max 10 pts; ≤6 → delivery consideration</li>
-          <li><strong>Umbilical Artery Doppler:</strong> FGR workup; absent/reversed end-diastolic flow → severe compromise</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Treatments</div>
-        <div class="card-title">Magnesium Sulfate (Neuroprotection)</div>
-        <div class="card-body">If delivery anticipated &lt;32 wks (some protocols &lt;34 wks): <strong>MgSO₄ 4–6 g IV load, then 1–2 g/hr</strong> × 12–24h → reduces risk of cerebral palsy. Monitor for toxicity: loss of DTRs (first sign), respiratory depression (Mg &gt;12 mEq/L). Antidote: calcium gluconate 1 g IV.</div>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Lung Maturity &amp; Positioning</div>
-        <div class="card-body">By 34 wks: lungs nearly mature; surfactant sufficient for most. Lanugo diminishing. Eyes open. Grasp reflex present. 36 wks: ~2600 g. Head typically engaged in nullips.</div>
-      </div>
-      <div class="card card-infect">
-        <div class="card-tag">Infections</div>
-        <div class="card-title">GBS Screening &amp; Late-Onset TORCH</div>
-        <ul class="card-list">
-          <li><strong>Group B Strep (GBS) rectovaginal swab:</strong> 35–37 wks — universal screening</li>
-          <li>GBS+ → intrapartum penicillin G prophylaxis</li>
-          <li><strong>Syphilis:</strong> Repeat RPR if high-risk; congenital syphilis prevented by treating mother with benzathine PCN G</li>
-          <li><strong>HSV:</strong> Recurrent genital HSV → acyclovir suppression 36 wks until delivery; C-section if active lesions at onset of labor</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:3">
-    <div class="wk-label">Wk 37–40</div>
-    <div class="cards-col">
-      <div class="card card-appt">
-        <div class="card-tag">Appointment</div>
-        <div class="card-title">Weekly Visits — Term Planning</div>
-        <div class="card-body">Weekly visits from 36 wks. Bishop score assessment (cervical ripening). Discuss delivery preferences, pain management, breastfeeding, newborn care. TOLAC counseling if prior cesarean.</div>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs</div>
-        <div class="card-title">Pre-delivery Labs</div>
-        <ul class="card-list">
-          <li>CBC (pre-op baseline)</li>
-          <li>Type &amp; Screen (repeat if &gt;72h from delivery)</li>
-          <li>Metabolic panel if preeclampsia</li>
-          <li>GBS result review</li>
-          <li>Coagulation studies if indicated (HELLP, placenta previa)</li>
-        </ul>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Fetal Development</div>
-        <div class="card-title">Term Fetus</div>
-        <div class="card-body">38 wks = early term; 39–40 wks = full term; 41 wks = late term; ≥42 wks = post-term. Average weight 3200–3500 g at 39–40 wks. Vernix, lanugo largely absent. Active fetal movement expected daily.</div>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Induction Considerations</div>
-        <div class="card-title">ARRIVE Trial / Indications</div>
-        <div class="card-body"><strong>Elective induction at 39 wks</strong> (nullips): ARRIVE trial showed reduced C-section rate. Medical indications: GDM, HTN, FGR, post-term (41–42 wks), PROM. Cervical ripening: misoprostol, dinoprostone, Foley balloon, oxytocin.</div>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Imaging</div>
-        <div class="card-title">Post-dates Surveillance</div>
-        <div class="card-body">≥41 wks: NST + AFI twice weekly. AFI &lt;5 cm or DVP &lt;2 cm → oligohydramnios → delivery. BPP if NST non-reactive.</div>
-      </div>
-    </div>
-  </div>
-
-</div>
-```
-
-  </section>
-
-  <!-- LABOR & DELIVERY -->
-
-  <section class="trimester-section hidden" id="labor">
-    <div class="trimester-header labor-header">
-      <div class="trimester-label">Labor &amp; Delivery</div>
-      <div class="trimester-weeks">Intrapartum</div>
-      <div class="trimester-caption">Stages of labor · Fetal monitoring · GBS prophylaxis · Analgesia · Complications</div>
-    </div>
-
-```
-<div class="week-track">
-
-  <div class="week-marker" style="--col:1">
-    <div class="wk-label">Admission</div>
-    <div class="cards-col">
-      <div class="card card-labs">
-        <div class="card-tag">Labs on Admission</div>
-        <div class="card-title">Intrapartum Labs</div>
-        <ul class="card-list">
-          <li>CBC with differential</li>
-          <li>BMP / CMP</li>
-          <li>Type &amp; Screen (crossmatch if high-risk)</li>
-          <li>GBS status review</li>
-          <li>Urine dipstick (protein, glucose)</li>
-          <li>Coagulation panel (if preeclampsia, abruption)</li>
-          <li>Group &amp; hold (high-risk deliveries)</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">GBS Prophylaxis</div>
-        <div class="card-title">Intrapartum Antibiotics</div>
-        <ul class="card-list">
-          <li><strong>Penicillin G 5M units IV, then 2.5M units q4h</strong> (first-line, GBS+)</li>
-          <li>Ampicillin 2g IV, then 1g q4h (alternative)</li>
-          <li>Allergies: cefazolin (low-risk allergy); clindamycin or vancomycin if high-risk PCN allergy</li>
-          <li>Prophylaxis needed if: GBS+, unknown status + risk factors, prior GBS infant, GBS bacteriuria this pregnancy</li>
-        </ul>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Monitoring</div>
-        <div class="card-title">Continuous EFM</div>
-        <div class="card-body">Baseline FHR 110–160 bpm. Assess: variability (moderate = 6–25 bpm, reassuring), accelerations (reassuring), decelerations (early → head compression; variable → cord; late → uteroplacental insufficiency). Category I/II/III classification.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:2">
-    <div class="wk-label">Stages of Labor</div>
-    <div class="cards-col">
-      <div class="card card-appt">
-        <div class="card-tag">Stage 1 — Latent Phase</div>
-        <div class="card-title">Cervical Effacement &amp; Dilation</div>
-        <div class="card-body">0–6 cm. Nullips: latent up to 20h; multips: up to 14h. Irregular contractions → regular. Bishop score guides induction. <strong>Arrest of latent phase</strong> = prolonged if &gt;20h (nullips) before active labor.</div>
-      </div>
-      <div class="card card-appt">
-        <div class="card-tag">Stage 1 — Active Phase</div>
-        <div class="card-title">6 cm → Complete</div>
-        <div class="card-body">6–10 cm. Expected dilation ≥1 cm/hr (ACOG 2014: active phase begins at 6 cm). Arrest: &lt;0.5 cm/2h with adequate contractions. Adequate contractions: ≥200 MVUs on IUPC or ≥3 ctx/10 min.</div>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Analgesia</div>
-        <div class="card-title">Labor Pain Management</div>
-        <ul class="card-list">
-          <li><strong>Epidural:</strong> 0.0625–0.125% bupivacaine ± fentanyl; gold standard; may slow labor minimally</li>
-          <li><strong>CSE (combined spinal-epidural):</strong> Faster onset</li>
-          <li><strong>IV opioids:</strong> Fentanyl 50–100 μg IV; butorphanol; avoid near delivery (neonatal respiratory depression)</li>
-          <li><strong>Nitrous oxide (50/50):</strong> Inhaled; modest effect</li>
-        </ul>
-      </div>
-      <div class="card card-appt">
-        <div class="card-tag">Stage 2</div>
-        <div class="card-title">Pushing → Delivery</div>
-        <div class="card-body">Full dilation to delivery. Nullips without epidural: &lt;2h; with epidural: &lt;3h. Multips: &lt;1h/2h. Arrest of descent: no fetal descent after 1h adequate pushing (nullip). Operative delivery options: vacuum, forceps. C-section if failed.</div>
-      </div>
-      <div class="card card-appt">
-        <div class="card-tag">Stage 3</div>
-        <div class="card-title">Placental Delivery</div>
-        <div class="card-body">Delivery of infant → delivery of placenta. Normally ≤30 min. Signs of separation: gush of blood, umbilical cord lengthening, fundal rise. <strong>Active management:</strong> oxytocin 10 units IM immediately after delivery → reduces PPH risk.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:3">
-    <div class="wk-label">Complications</div>
-    <div class="cards-col">
-      <div class="card card-infect">
-        <div class="card-tag">Intrapartum Infections</div>
-        <div class="card-title">Chorioamnionitis (IAI)</div>
-        <ul class="card-list">
-          <li>Fever ≥39°C OR 38–39°C ×2 (30 min apart) + maternal tachycardia, fetal tachycardia, uterine tenderness, foul-smelling fluid</li>
-          <li>Treatment: <strong>Ampicillin 2g IV q6h + Gentamicin 1.5 mg/kg q8h</strong> (or 5mg/kg q24h)</li>
-          <li>Add clindamycin or metronidazole if C-section</li>
-          <li>Fetal tachycardia &gt;160 bpm → early sign</li>
-        </ul>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Complications — Labs</div>
-        <div class="card-title">HELLP Syndrome</div>
-        <ul class="card-list">
-          <li>Hemolysis (schistocytes, ↑LDH &gt;600, ↑indirect bili)</li>
-          <li>Elevated Liver enzymes (AST/ALT &gt;70)</li>
-          <li>Low Platelets (&lt;100k)</li>
-          <li>Management: MgSO₄ seizure prophylaxis, antihypertensives (labetalol, hydralazine, nifedipine), delivery</li>
-          <li>Plt &lt;50k → transfuse if C-section; &lt;20k → transfuse any delivery</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">PPH Prevention</div>
-        <div class="card-title">Postpartum Hemorrhage Protocol</div>
-        <ul class="card-list">
-          <li>Oxytocin 10–40 units in 1L NS IV (first-line)</li>
-          <li>Methylergonovine 0.2 mg IM (avoid if HTN)</li>
-          <li>Carboprost (15-methyl PGF2α) 0.25 mg IM q15–90 min (avoid asthma)</li>
-          <li>Misoprostol 800–1000 μg rectally</li>
-          <li>Tranexamic acid 1g IV (within 3h of delivery)</li>
-          <li>Uterine massage, bimanual compression, balloon tamponade</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-```
-
-  </section>
-
-  <!-- POSTPARTUM -->
-
-  <section class="trimester-section hidden" id="postpartum">
-    <div class="trimester-header pp-header">
-      <div class="trimester-label">Postpartum</div>
-      <div class="trimester-weeks">0 – 6 Weeks</div>
-      <div class="trimester-caption">Maternal recovery · Newborn care · Vaccinations · Mental health · Lactation</div>
-    </div>
-
-```
-<div class="week-track">
-
-  <div class="week-marker" style="--col:1">
-    <div class="wk-label">Immediate (0–24h)</div>
-    <div class="cards-col">
-      <div class="card card-labs">
-        <div class="card-tag">Newborn Labs</div>
-        <div class="card-title">Neonatal Assessments</div>
-        <ul class="card-list">
-          <li><strong>APGAR score:</strong> 1 min and 5 min (A-appearance, P-pulse, G-grimace, A-activity, R-respiration; 7–10 = normal)</li>
-          <li><strong>Cord blood gases:</strong> pH, pCO2, base excess</li>
-          <li>Cord blood type &amp; Coombs (if Rh– mother)</li>
-          <li>Newborn blood glucose (if DM, macrosomia, SGA)</li>
-          <li>Pulse oximetry screen (CCHD) at 24h</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Newborn Prophylaxis</div>
-        <div class="card-title">Immediate Newborn Treatments</div>
-        <ul class="card-list">
-          <li><strong>Vitamin K1 1 mg IM:</strong> VKDB prevention (hemorrhagic disease of newborn)</li>
-          <li><strong>Erythromycin 0.5% ophthalmic ointment:</strong> GC/chlamydia ophthalmia prophylaxis</li>
-          <li><strong>Hepatitis B vaccine (HepB1):</strong> Within 12–24h if HepBsAg– mom; &lt;12h if HepBsAg+ mom + HBIG 0.5 mL IM</li>
-        </ul>
-      </div>
-      <div class="card card-fetal">
-        <div class="card-tag">Newborn</div>
-        <div class="card-title">Neonatal Hyperbilirubinemia</div>
-        <div class="card-body">Physiologic jaundice peaks day 3–5 (indirect bili). Pathologic if &lt;24h (hemolytic — ABO, Rh incompatibility). Bhutani nomogram: plot serum bili vs. age in hours → risk stratification. Phototherapy threshold varies by GA and risk factors. Exchange transfusion if severe.</div>
-      </div>
-      <div class="card card-appt">
-        <div class="card-tag">Maternal</div>
-        <div class="card-title">4th Stage of Labor</div>
-        <div class="card-body">First 1–2h postpartum. Monitor: uterine tone/fundus, lochia, BP, HR, pain, bladder. PPH: blood loss &gt;1000 mL (or any hemodynamically significant loss). VS q15 min × 1h, then q30 min × 1h.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:2">
-    <div class="wk-label">Day 1–3 (Inpatient)</div>
-    <div class="cards-col">
-      <div class="card card-screen">
-        <div class="card-tag">Newborn Screening</div>
-        <div class="card-title">Newborn State Screens</div>
-        <ul class="card-list">
-          <li><strong>NBS (newborn metabolic screen):</strong> Heel stick at 24–48h — PKU, hypothyroidism, galactosemia, CAH, MCAD, hemoglobinopathies, and 30+ others (state-specific)</li>
-          <li><strong>Hearing screen (AABR/OAE):</strong> Universal; before discharge</li>
-          <li><strong>CCHD screen:</strong> Pulse ox right hand + right foot; repeat if fail</li>
-          <li>Repeat NBS at 1–2 wks if initial done &lt;24h</li>
-        </ul>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Maternal Labs</div>
-        <div class="card-title">Postpartum Maternal Labs</div>
-        <ul class="card-list">
-          <li>CBC (Hgb/Hct — if significant blood loss)</li>
-          <li>Serum bili if GBS+ and neonatal jaundice</li>
-          <li>Thyroid function (TSH) — screen for postpartum thyroiditis at 4–6 wks</li>
-          <li>RhoGAM 300 μg IM within 72h if Rh– mom &amp; Rh+ or unknown baby</li>
-        </ul>
-      </div>
-      <div class="card card-infect">
-        <div class="card-tag">Postpartum Infections</div>
-        <div class="card-title">Endometritis &amp; Wound Infection</div>
-        <ul class="card-list">
-          <li><strong>Endometritis:</strong> Fever + uterine tenderness + foul lochia; Rx: clindamycin 900mg IV q8h + gentamicin 1.5mg/kg q8h; C/S higher risk</li>
-          <li><strong>Wound infection:</strong> Cellulitis vs. abscess; open and drain; antibiotics</li>
-          <li><strong>Mastitis:</strong> Unilateral breast tenderness, erythema, flu-like sx; dicloxacillin or cephalexin × 10–14 days; continue breastfeeding</li>
-        </ul>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Lactation</div>
-        <div class="card-title">Breastfeeding Support</div>
-        <div class="card-body">Colostrum days 1–3; transitional milk days 3–14; mature milk thereafter. Latch assessment by lactation consultant. Adequate feeds: 8–12 times/day; 6 wet diapers/day by day 5. WHO recommends exclusive BF × 6 months. Medications compatible with BF: most antibiotics, labetalol, nifedipine, most antidepressants (sertraline safest).</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="week-marker" style="--col:3">
-    <div class="wk-label">Wk 2–6</div>
-    <div class="cards-col">
-      <div class="card card-appt">
-        <div class="card-tag">Appointments</div>
-        <div class="card-title">Postpartum Follow-up</div>
-        <ul class="card-list">
-          <li><strong>OB visit 2–3 wks</strong> (C-section wound check, BP recheck if hypertensive)</li>
-          <li><strong>Comprehensive postpartum visit 6 wks:</strong> ACOG recommends contact within 3 wks + comprehensive at 12 wks postpartum</li>
-          <li>Newborn visits: 3–5 days, 2 wks, 1 month (per AAP schedule)</li>
-        </ul>
-      </div>
-      <div class="card card-screen">
-        <div class="card-tag">Mental Health</div>
-        <div class="card-title">Postpartum Depression Screening</div>
-        <div class="card-body"><strong>Edinburgh Postnatal Depression Scale (EPDS)</strong> at 1-month and 6-month visits. Score ≥10 → screen further; ≥13 → likely PPD. <strong>Baby blues:</strong> Normal, days 3–10, transient. <strong>PPD:</strong> Onset within 4 wks–1 year; SSRI (sertraline, escitalopram) safe with BF; therapy. <strong>Postpartum psychosis:</strong> Rare, emergency; hallucinations, delusions.</div>
-      </div>
-      <div class="card card-tx">
-        <div class="card-tag">Contraception</div>
-        <div class="card-title">Postpartum Contraception</div>
-        <ul class="card-list">
-          <li><strong>Progestin-only pill (POP):</strong> Safe while BF; start immediately postpartum</li>
-          <li><strong>Combined OCP:</strong> Avoid &lt;6 wks (thrombosis risk); &lt;6 months if exclusively BF (estrogen suppresses lactation)</li>
-          <li><strong>LARC (IUD/implant):</strong> Immediate postpartum IUD (within 10 min of placental delivery) or 4+ wks; implant any time</li>
-          <li><strong>Depo-Provera:</strong> Any time postpartum</li>
-        </ul>
-      </div>
-      <div class="card card-labs">
-        <div class="card-tag">Labs at 6 Weeks</div>
-        <div class="card-title">6-Week Postpartum Panel</div>
-        <ul class="card-list">
-          <li>GDM → 75g OGTT at 4–12 wks postpartum</li>
-          <li>TSH (postpartum thyroiditis)</li>
-          <li>CBC if persistent fatigue/anemia</li>
-          <li>Hgb A1c + fasting glucose (GDM patients long-term)</li>
-          <li>Pap smear if deferred</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-</div>
-```
-
-  </section>
-
-</main>
-
-<!-- TORCH QUICK-REFERENCE TABLE -->
-
-<section class="torch-section">
-  <div class="torch-header">
-    <h2>TORCH Infections — Quick Reference</h2>
-    <p>Transplacental fetal infections organized by pathogen, transmission, fetal effects, and management</p>
-  </div>
-  <div class="torch-grid">
-    <div class="torch-card">
-      <div class="torch-pathogen">T — Toxoplasma gondii</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Cat feces, raw meat, soil</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Usually asymptomatic; lymphadenopathy, fever</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Chorioretinitis, intracranial calcifications, hydrocephalus (T1); "blueberry muffin" rash</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>IgM/IgG serology; PCR amniotic fluid</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>Pyrimethamine + sulfadiazine + leucovorin</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-no">Rare</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">O — Parvovirus B19</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Respiratory droplets (highly contagious)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Slapped-cheek rash, polyarticular arthritis, flu-like illness</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Aplastic crisis → severe anemia → <strong>nonimmune hydrops fetalis</strong></span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>IgM/IgG; PCR; MCA-PSV Doppler &gt;1.5 MoM</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>Intrauterine transfusion if hydrops; no vaccine</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-yes">YES</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">O — Other: Syphilis (T. pallidum)</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Sexual; transplacental (any trimester)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Painless chancre → condylomata lata → neurosyphilis</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Congenital syphilis: bone lesions, rash, hepatomegaly, CNS, saddle nose — manifests months after birth</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>RPR (screen) + FTA-ABS or TPPA (confirm)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>Benzathine penicillin G (only proven treatment in pregnancy)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-no">Rare</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">O — Other: VZV (Varicella)</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Airborne/contact; highly contagious</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Pruritic vesicular rash, fever, malaise; pneumonia risk in pregnancy</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Scar-like lesions, chorioretinitis, limb hypoplasia, cortical atrophy (no hydrops)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>VZV IgG (immune status); DFA from vesicle</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>VZIG within 96h exposure (if IgG–); acyclovir if active disease</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-no">NO</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">R — Rubella</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Respiratory droplets</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Flu-like prodrome, post-auricular LAD, maculopapular rash</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Congenital rubella syndrome: cataracts, cochlear defects, heart defects (PDA, VSD). Highest risk T1 (&gt;20 wks = rare hydrops)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>Rubella IgM/IgG; rubella IgG avidity test</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>No treatment; MMR vaccine postpartum (live = contraindicated in pregnancy)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-maybe">Rarely (&lt;20 wk)</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">C — CMV</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Contact with body fluids, sexual, breast milk</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Asymptomatic (majority) or CMV mononucleosis (fever, malaise, sore throat)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>CNS abnormalities, hearing loss, chorioretinitis, periventricular calcifications, oligohydramnios, hydrops</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>U/S: periventricular calcifications; PCR amniotic fluid; maternal CMV IgM/IgG avidity</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>Valacyclovir (investigational); CMV hyperimmune globulin (some centers); no vaccine</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-yes">YES</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">H — HSV (Herpes simplex)</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Contact with active lesions; vertical transmission at delivery</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Painful vesicles/ulcerations on genitals or lips (may be asymptomatic)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Microcephaly, hydrocephalus, microphthalmia, vesicular lesions, very low birth weight (no hydrops)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>PCR swab from vesicle; HSV-1/2 IgG serology</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>Acyclovir suppression from 36 wks; C-section if active lesions at labor onset</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-no">NO</span></div>
-    </div>
-    <div class="torch-card">
-      <div class="torch-pathogen">O — Other: Listeria</div>
-      <div class="torch-row"><span class="torch-lbl">Transmission</span><span>Contaminated food (deli meat, soft cheeses, unpasteurized dairy)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Maternal sx</span><span>Asymptomatic or fever, headache, GI symptoms; septicemia</span></div>
-      <div class="torch-row"><span class="torch-lbl">Fetal effects</span><span>Granulomatosis infantiseptica; congenital listeriosis (cannot be diagnosed antenatally)</span></div>
-      <div class="torch-row"><span class="torch-lbl">Dx</span><span>Blood/CSF cultures; maternal symptoms key</span></div>
-      <div class="torch-row"><span class="torch-lbl">Rx</span><span>Ampicillin + gentamicin; TMP-SMX in penicillin allergy</span></div>
-      <div class="torch-row"><span class="torch-lbl">Hydrops?</span><span class="badge-no">NO</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- LAB VALUES REFERENCE -->
-
-<section class="labs-reference">
-  <div class="labs-header">
-    <h2>Reference Lab Values in Pregnancy</h2>
-    <p>Normal physiologic changes alter many lab values — interpret in obstetric context</p>
-  </div>
-  <div class="labs-grid">
-    <div class="lab-group">
-      <div class="lab-group-title">Hematology</div>
-      <div class="lab-row"><span>Hgb</span><span class="lab-val">↓ 10–12 g/dL (hemodilution; non-preg 12–16)</span></div>
-      <div class="lab-row"><span>Hct</span><span class="lab-val">30–36% (↓)</span></div>
-      <div class="lab-row"><span>WBC</span><span class="lab-val">↑ 9–16 × 10³ (normal; up to 20–25k in labor)</span></div>
-      <div class="lab-row"><span>Platelets</span><span class="lab-val">Normal or slight ↓; gestational thrombocytopenia ~6% (Plt 70–150)</span></div>
-      <div class="lab-row"><span>MCV</span><span class="lab-val">Normal 80–100 fL; microcytic → iron deficiency (most common anemia in pregnancy)</span></div>
-      <div class="lab-row"><span>Ferritin</span><span class="lab-val">↓ (&lt;10–15 µg/L → iron deficiency); iron supplements if &lt;30</span></div>
-    </div>
-    <div class="lab-group">
-      <div class="lab-group-title">Chemistry</div>
-      <div class="lab-row"><span>Na</span><span class="lab-val">↓ 132–140 mEq/L (osmostat reset)</span></div>
-      <div class="lab-row"><span>BUN / Cr</span><span class="lab-val">↓ (↑ GFR 40–65%); Cr &lt;0.8 mg/dL normal in pregnancy</span></div>
-      <div class="lab-row"><span>Albumin</span><span class="lab-val">↓ 2.5–3.5 g/dL (hemodilution)</span></div>
-      <div class="lab-row"><span>Alk Phos</span><span class="lab-val">↑↑ 2–4× (placental isoenzyme — not liver)</span></div>
-      <div class="lab-row"><span>AST/ALT</span><span class="lab-val">Normal; elevation → HELLP, acute fatty liver, cholestasis</span></div>
-      <div class="lab-row"><span>Glucose</span><span class="lab-val">↓ Fasting (insulin sensitivity ↑ T1); insulin resistance ↑↑ T2–T3</span></div>
-      <div class="lab-row"><span>Total CO2/HCO3</span><span class="lab-val">↓ ~18–21 mEq/L (compensatory metabolic acidosis for respiratory alkalosis)</span></div>
-    </div>
-    <div class="lab-group">
-      <div class="lab-group-title">Coagulation</div>
-      <div class="lab-row"><span>PT / aPTT</span><span class="lab-val">Slightly shortened (hypercoagulable state); PT normal or ↓</span></div>
-      <div class="lab-row"><span>Fibrinogen</span><span class="lab-val">↑↑ 400–600 mg/dL (non-preg 200–400); ↓ in DIC, abruption</span></div>
-      <div class="lab-row"><span>D-dimer</span><span class="lab-val">↑ progressively through pregnancy (not useful for DVT/PE diagnosis in pregnancy without clinical pretest)</span></div>
-      <div class="lab-row"><span>vWF / Factor VIII</span><span class="lab-val">↑ — protect against VWD symptoms during pregnancy</span></div>
-    </div>
-    <div class="lab-group">
-      <div class="lab-group-title">Hormones</div>
-      <div class="lab-row"><span>β-hCG</span><span class="lab-val">Peaks 8–10 wks (~100,000 mIU/mL) → plateau T2–T3</span></div>
-      <div class="lab-row"><span>Progesterone</span><span class="lab-val">↑↑ throughout (corpus luteum → placenta by 8–10 wks)</span></div>
-      <div class="lab-row"><span>Estradiol</span><span class="lab-val">↑↑↑ (1000× non-pregnant levels at term)</span></div>
-      <div class="lab-row"><span>TSH</span><span class="lab-val">↓ T1 (hCG cross-reacts with TSH receptor); free T4 ↑ slightly T1. Use trimester-specific ranges</span></div>
-      <div class="lab-row"><span>Cortisol</span><span class="lab-val">↑ (physiologic hypercortisolism of pregnancy)</span></div>
-    </div>
-    <div class="lab-group">
-      <div class="lab-group-title">Urinalysis</div>
-      <div class="lab-row"><span>Protein</span><span class="lab-val">&lt;300 mg/24h normal; ≥300 → proteinuria (preeclampsia threshold)</span></div>
-      <div class="lab-row"><span>Glycosuria</span><span class="lab-val">May occur normally (↑ GFR exceeds tubular reabsorption); not diagnostic of DM alone</span></div>
-      <div class="lab-row"><span>Urine culture</span><span class="lab-val">Screen for asymptomatic bacteriuria at first visit; treat if ≥100k CFU/mL → prevents pyelonephritis &amp; PTL</span></div>
-    </div>
-    <div class="lab-group">
-      <div class="lab-group-title">Pulmonary / ABG</div>
-      <div class="lab-row"><span>Respiratory rate</span><span class="lab-val">↑ tidal volume (not RR); progesterone-driven → compensated respiratory alkalosis</span></div>
-      <div class="lab-row"><span>pCO2</span><span class="lab-val">↓ ~30–32 mmHg (chronic hyperventilation)</span></div>
-      <div class="lab-row"><span>pO2</span><span class="lab-val">↑ slightly (~105 mmHg)</span></div>
-      <div class="lab-row"><span>pH</span><span class="lab-val">7.40–7.47 (mild alkalosis compensated by renal HCO3 excretion)</span></div>
-      <div class="lab-row"><span>FRC</span><span class="lab-val">↓ 20% (uterus elevation); increased risk hypoxia with apnea (rapid desaturation)</span></div>
-    </div>
-  </div>
+<!-- Postpartum -->
+<section class="pp-section" id="pp-section">
+  <div class="pp-header">Postpartum — 0 to 12 Weeks</div>
+  <div class="pp-grid" id="pp-grid"><!-- JS --></div>
 </section>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <p><strong>Pregnancy Clinical Timeline</strong> — Compiled for educational and clinical reference</p>
-    <p>Sources: ACOG Practice Bulletins, AAP Red Book, UpToDate, Amboss. Not a substitute for clinical judgment. Verify all drug dosing and guidelines independently.</p>
-    <p class="footer-small">Obstetric management guidelines are subject to change. This reference reflects evidence as of 2024–2025.</p>
-  </div>
+  <p>Pregnancy Clinical Timeline · Educational reference · Sources: ACOG Practice Bulletins, AAP Red Book, UpToDate · Not a substitute for clinical judgment · Verify all dosing independently</p>
 </footer>
+```
+
+  </main>
+
+  <!-- RIGHT RAIL: filter + jump + ref vals -->
+
+  <aside class="rail-right">
+    <div class="rr-section">
+      <div class="rr-title">Filter</div>
+      <div id="filter-btns">
+        <button class="fbtn on" data-type="all">All</button>
+        <button class="fbtn" data-type="labs">Labs</button>
+        <button class="fbtn" data-type="appt">Appt</button>
+        <button class="fbtn" data-type="infect">Infect.</button>
+        <button class="fbtn" data-type="fetal">Fetal</button>
+        <button class="fbtn" data-type="tx">Tx / Vax</button>
+        <button class="fbtn" data-type="screen">Imaging</button>
+      </div>
+    </div>
+    <div class="rr-section">
+      <div class="rr-title">Jump to</div>
+      <a class="jlink" href="#era-t1">T1 · Wks 1–13</a>
+      <a class="jlink" href="#era-t2">T2 · Wks 14–27</a>
+      <a class="jlink" href="#era-t3">T3 · Wks 28–36</a>
+      <a class="jlink" href="#era-term">Term · 37–42</a>
+      <a class="jlink" href="#pp-section">Postpartum</a>
+    </div>
+    <div class="rr-section">
+      <div class="rr-title">Quick Ref</div>
+      <div class="qref"><span>FHR normal</span><b>110–160 bpm</b></div>
+      <div class="qref"><span>Hgb (preg)</span><b>10–12 g/dL</b></div>
+      <div class="qref"><span>Cr (preg)</span><b>&lt;0.8 mg/dL</b></div>
+      <div class="qref"><span>β-hCG peak</span><b>wks 8–10</b></div>
+      <div class="qref"><span>AFI normal</span><b>5–24 cm</b></div>
+      <div class="qref"><span>Viability</span><b>22–24 wks</b></div>
+      <div class="qref"><span>MCA-PSV cut</span><b>&gt;1.5 MoM</b></div>
+      <div class="qref"><span>Full term</span><b>39–40 wks</b></div>
+      <div class="qref"><span>Fundal Ht</span><b>GA ± 2 cm</b></div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal">
+    <button class="modal-x" id="modal-x">✕</button>
+    <div class="modal-tag" id="modal-tag"></div>
+    <div class="modal-wk" id="modal-wk"></div>
+    <h2 class="modal-title" id="modal-title"></h2>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 
